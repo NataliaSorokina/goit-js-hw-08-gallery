@@ -12,7 +12,7 @@ const refs = {
 refs.gallery.insertAdjacentHTML('beforeend', createGalleryItemsMarkup(items));
 refs.gallery.addEventListener('click', openModalHandler);
 refs.btn.addEventListener('click', closeModalHandler);
-
+refs.overlay.addEventListener('click', clickOnOverlay)
 
 function createGalleryItemsMarkup(items) {
     return items
@@ -48,4 +48,10 @@ function openModalHandler(event) {
 function closeModalHandler() {
     refs.lightbox.classList.remove('is-open');
     refs.image.src = '';
+}
+
+function clickOnOverlay(event) {
+    if (event.currentTarget === event.target) {
+        closeModalHandler();
+    }
 }
