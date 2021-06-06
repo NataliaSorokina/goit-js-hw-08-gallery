@@ -38,6 +38,7 @@ function createGalleryItemsMarkup(items) {
 
 function openModalHandler(event) {
     event.preventDefault();
+    window.addEventListener('keydown', pressEscKeyHandler);
     if (event.target.nodeName !== 'IMG' ) {
         return;
     };
@@ -46,12 +47,19 @@ function openModalHandler(event) {
 }
 
 function closeModalHandler() {
+    window.removeEventListener('keydown', pressEscKeyHandler);
     refs.lightbox.classList.remove('is-open');
     refs.image.src = '';
 }
 
 function clickOnOverlay(event) {
     if (event.currentTarget === event.target) {
+        closeModalHandler();
+    }
+}
+
+function pressEscKeyHandler(event) {
+    if (event.code === 'Escape') {
         closeModalHandler();
     }
 }
