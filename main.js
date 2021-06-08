@@ -51,6 +51,7 @@ function openModalHandler(event) {
 
 function closeModalHandler() {
     window.removeEventListener('keydown', pressEscKeyHandler);
+    window.removeEventListener('keydown', flipThroughImagesHandler);
     refs.lightbox.classList.remove('is-open');
     refs.image.src = '';
     refs.image.alt = '';
