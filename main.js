@@ -78,23 +78,23 @@ function flipThroughImagesHandler(event) {
     let currentAltIndex = imagesAlt.indexOf(refs.image.alt);
 
     if (event.code === 'ArrowLeft') {
-        if (currentImageIndex < 0 && currentAltIndex < 0) {
-            currentImageIndex = imagesSrc.length;
-            currentAltIndex = imagesAlt.length;
-        } /* else { */
+        if (currentImageIndex === 0 && currentAltIndex === 0) {
+            currentImageIndex = imagesSrc.length - 1;
+            currentAltIndex = imagesAlt.length - 1;
+        } else {
             currentImageIndex -= 1;
             currentAltIndex -= 1;
-        // }        
+        }        
     }
 
     if (event.code === 'ArrowRight') {
-        if (currentImageIndex > imagesSrc.length && currentAltIndex > imagesAlt.length) {
+        if (currentImageIndex === imagesSrc.length - 1 && currentAltIndex === imagesAlt.length -1) {
             currentImageIndex = 0;
             currentAltIndex = 0;
-        } /* else { */
+        } else {
             currentImageIndex += 1;
             currentAltIndex += 1;
-        // }
+        }
     }
 
     refs.image.src = imagesSrc[currentImageIndex];
