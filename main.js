@@ -10,9 +10,8 @@ const refs = {
 };
 
 refs.gallery.insertAdjacentHTML('beforeend', createGalleryItemsMarkup(items));
+
 refs.gallery.addEventListener('click', openModalHandler);
-refs.btn.addEventListener('click', closeModalHandler);
-refs.overlay.addEventListener('click', clickOnOverlay)
 
 function createGalleryItemsMarkup(items) {
     return items
@@ -38,6 +37,8 @@ function createGalleryItemsMarkup(items) {
 
 function openModalHandler(event) {
     event.preventDefault();
+    refs.btn.addEventListener('click', closeModalHandler);
+    refs.overlay.addEventListener('click', clickOnOverlay);
     window.addEventListener('keydown', pressEscKeyHandler);
     window.addEventListener('keydown', flipThroughImagesHandler);
     
@@ -50,6 +51,8 @@ function openModalHandler(event) {
 }
 
 function closeModalHandler() {
+    refs.btn.removeEventListener('click', closeModalHandler);
+    refs.overlay.removeEventListener('click', clickOnOverlay);
     window.removeEventListener('keydown', pressEscKeyHandler);
     window.removeEventListener('keydown', flipThroughImagesHandler);
     refs.lightbox.classList.remove('is-open');
